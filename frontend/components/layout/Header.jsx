@@ -20,6 +20,28 @@ export default function Header({ isTransparent = false, showExtensionButton }) {
     { href: "/sources", label: "Resources" },
   ];
 
+  const handleDownloadAll = (e) => {
+    e.preventDefault();
+
+    // 1. Download extension ZIP
+    const zipLink = document.createElement("a");
+    zipLink.href = "/sol-ai-extension.zip";
+    zipLink.download = "sol-ai-extension.zip";
+    document.body.appendChild(zipLink);
+    zipLink.click();
+    document.body.removeChild(zipLink);
+
+    // 2. Download Instructions PDF
+    setTimeout(() => {
+      const pdfLink = document.createElement("a");
+      pdfLink.href = "/SOL_AI_Extension_Guide.pdf";
+      pdfLink.download = "SOL_AI_Extension_Guide.pdf";
+      document.body.appendChild(pdfLink);
+      pdfLink.click();
+      document.body.removeChild(pdfLink);
+    }, 300);
+  };
+
   const headerBg = isTransparent
     ? "bg-black/50 backdrop-blur-md border-b border-white/5"
     : "bg-black/95 backdrop-blur-md border-b border-white/5 shadow-lg";
@@ -74,12 +96,12 @@ export default function Header({ isTransparent = false, showExtensionButton }) {
 
           {/* Right: Explore page top-right Download சொல் AI Extension button UI */}
           {isExplore ? (
-            <a
-              href="/sol-ai-extension.zip"
-              download="sol-ai-extension.zip"
+            <button
+              type="button"
+              onClick={handleDownloadAll}
               className="flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 rounded-full bg-black/70 hover:bg-black/85 backdrop-blur-md border border-[#C9A227]/60 hover:border-[#E5C158] shadow-[0_0_12px_rgba(201,162,39,0.2)] hover:shadow-[0_0_18px_rgba(201,162,39,0.35)] transition-all duration-200 cursor-pointer select-none group active:scale-[0.98] shrink-0"
-              title="Download சொல் AI Extension"
-              aria-label="Download சொல் AI Extension"
+              title="Download சொல் AI Extension & Guide PDF"
+              aria-label="Download சொல் AI Extension & Guide PDF"
             >
               {/* Gold SOL AI logo/icon on the LEFT */}
               <img
@@ -95,7 +117,7 @@ export default function Header({ isTransparent = false, showExtensionButton }) {
 
               {/* Gold puzzle-piece icon on the RIGHT */}
               <Puzzle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E5C158] fill-[#E5C158] shrink-0 group-hover:scale-110 transition-transform" />
-            </a>
+            </button>
           ) : (
             <div className="flex items-center space-x-3">
               <button
