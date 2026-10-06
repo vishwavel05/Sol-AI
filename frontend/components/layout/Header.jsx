@@ -28,6 +28,38 @@ export default function Header({ isTransparent = false, showExtensionButton }) {
       ? showExtensionButton
       : !pathname || pathname === "/" || pathname.startsWith("/search");
 
+  const handleDownloadZip = (e) => {
+    e.preventDefault();
+    const link = document.createElement("a");
+    link.href = "/sol-ai-extension.zip";
+    link.download = "sol-ai-extension.zip";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => setIsDropdownOpen(false), 200);
+  };
+
+  const handleDownloadPdf = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/SOL_AI_Extension_Guide.pdf");
+      if (!res.ok) throw new Error("Fetch failed");
+      const blob = await res.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "SOL_AI_Extension_Guide.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => window.URL.revokeObjectURL(blobUrl), 1000);
+    } catch (err) {
+      // Fallback
+      window.open("/SOL_AI_Extension_Guide.pdf", "_blank");
+    }
+    setTimeout(() => setIsDropdownOpen(false), 200);
+  };
+
   const navLinks = [
     { href: "/", label: "Explore" },
     { href: "/about", label: "About" },
@@ -133,11 +165,10 @@ export default function Header({ isTransparent = false, showExtensionButton }) {
                   </div>
 
                   {/* Option 1: Extension ZIP */}
-                  <a
-                    href="/sol-ai-extension.zip"
-                    download="sol-ai-extension.zip"
-                    onClick={() => setIsDropdownOpen(false)}
-                    className="flex items-start gap-3 px-3.5 py-2.5 hover:bg-white/10 transition-colors group cursor-pointer"
+                  <button
+                    type="button"
+                    onClick={handleDownloadZip}
+                    className="w-full text-left flex items-start gap-3 px-3.5 py-2.5 hover:bg-white/10 transition-colors group cursor-pointer"
                   >
                     <div className="p-2 rounded-lg bg-[#C9A227]/15 border border-[#C9A227]/30 text-[#E5C158] group-hover:bg-[#C9A227]/25 transition-colors shrink-0 mt-0.5">
                       <Download className="w-4 h-4" />
@@ -155,14 +186,13 @@ export default function Header({ isTransparent = false, showExtensionButton }) {
                         Ready to load in Chrome, Edge, and Brave via Developer mode
                       </p>
                     </div>
-                  </a>
+                  </button>
 
                   {/* Option 2: PDF User Guide */}
-                  <a
-                    href="/SOL_AI_Extension_Guide.pdf"
-                    download="SOL_AI_Extension_Guide.pdf"
-                    onClick={() => setIsDropdownOpen(false)}
-                    className="flex items-start gap-3 px-3.5 py-2.5 hover:bg-white/10 transition-colors group cursor-pointer"
+                  <button
+                    type="button"
+                    onClick={handleDownloadPdf}
+                    className="w-full text-left flex items-start gap-3 px-3.5 py-2.5 hover:bg-white/10 transition-colors group cursor-pointer"
                   >
                     <div className="p-2 rounded-lg bg-[#E5C158]/15 border border-[#E5C158]/30 text-[#E5C158] group-hover:bg-[#E5C158]/25 transition-colors shrink-0 mt-0.5">
                       <FileText className="w-4 h-4" />
@@ -180,7 +210,7 @@ export default function Header({ isTransparent = false, showExtensionButton }) {
                         Setup manual, feature breakdown & 20 requests/day fair use policy
                       </p>
                     </div>
-                  </a>
+                  </button>
                 </div>
               )}
             </div>
