@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <title>சொல் AI (SOL AI) — Browser Extension User Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Tamil', system-ui, -apple-system, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.55;
+      font-size: 13px;
+    }
+
+    .header {
+      border-bottom: 2px solid #C9A227;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .header-titles {
+      flex: 1;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', 'Noto Sans Tamil', serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .brand-title span {
+      color: #B48214;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #FEF9C3;
+      border: 1px solid #EAB308;
+      color: #854D0E;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+
+    .doc-meta {
+      text-align: right;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .section {
+      margin-bottom: 18px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #0f172a;
+      border-left: 4px solid #C9A227;
+      padding-left: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .steps-list {
+      list-style: none;
+      counter-reset: step-counter;
+      display: grid;
+      grid-gap: 7px;
+    }
+
+    .step-item {
+      counter-increment: step-counter;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .step-number {
+      background: #C9A227;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 11px;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .step-content strong {
+      color: #0f172a;
+    }
+
+    .step-content code {
+      background: #e2e8f0;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 11.5px;
+      color: #0f172a;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .feature-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 9px 12px;
+    }
+
+    .feature-card h4 {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #92400E;
+      margin-bottom: 3px;
+    }
+
+    .feature-card p {
+      font-size: 11.5px;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    .policy-box {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-left: 4px solid #D97706;
+      border-radius: 6px;
+      padding: 11px 14px;
+      margin-bottom: 10px;
+    }
+
+    .policy-box h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #B45309;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .policy-box ul {
+      margin-left: 18px;
+      font-size: 12px;
+      color: #78350F;
+    }
+
+    .policy-box li {
+      margin-bottom: 4px;
+    }
+
+    .roadmap-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+
+    .roadmap-item {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 11.5px;
+      color: #334155;
+    }
+
+    .roadmap-item strong {
+      color: #0f172a;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .footer {
+      border-top: 1px solid #e2e8f0;
+      margin-top: 16px;
+      padding-top: 10px;
+      font-size: 10.5px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer a {
+      color: #C9A227;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-titles">
+      <div class="brand-title">சொல் AI <span>(SOL AI)</span></div>
+      <div class="brand-subtitle">Tamil Lexical Intelligence & Classical Literary Grounding System</div>
+      <div class="badge">Official Browser Extension Manual • Manifest V3</div>
+    </div>
+    <div class="doc-meta">
+      <div>Version: 1.0.0</div>
+      <div>Platform: Chrome / Edge / Brave</div>
+    </div>
+  </div>
+
+  <!-- Section 1: How to Download & Install -->
+  <div class="section">
+    <div class="section-title">1. How to Download & Install the Extension</div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <strong>Download Files:</strong> Click <code>Download சொல் AI Extension</code> on the website to receive both the ZIP bundle and this PDF guide.
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <strong>Extract Archive:</strong> Right-click <code>sol-ai-extension.zip</code> and select <strong>Extract All</strong> to an easily accessible folder on your computer.
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <strong>Open Extensions Page:</strong> In Google Chrome, Microsoft Edge, or Brave, navigate to <code>chrome://extensions</code> (or <code>edge://extensions</code>).
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <strong>Enable Developer Mode:</strong> Toggle the <strong>Developer mode</strong> switch at the top-right corner of the page to <strong>ON</strong>.
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <strong>Load Extension:</strong> Click <strong>"Load unpacked"</strong> in the top-left corner and select the extracted extension folder. The சொல் AI emblem will appear in your toolbar!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: How to Use -->
+  <div class="section">
+    <div class="section-title">2. How to Use on Any Webpage</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h4>🔍 Instant Highlight & Lookup</h4>
+        <p>Highlight any Tamil word or compound phrase on any webpage (news portals, Wikipedia, blogs). Click the floating சொல் AI badge to open the inspection drawer.</p>
+      </div>
+      <div class="feature-card">
+        <h4>🧩 FOMA FST Morphology</h4>
+        <p>Deconstructs complex agglutinative words into their base lemma, grammatical case, number, and suffix attachments with zero guesswork.</p>
+      </div>
+      <div class="feature-card">
+        <h4>🎯 Deterministic Contextual WSD</h4>
+        <p>Disambiguates polysemous words (e.g., <em>கால்</em> as fraction vs. anatomical foot) based on the exact enclosing sentence context.</p>
+      </div>
+      <div class="feature-card">
+        <h4>📜 Classical Literary Grounding</h4>
+        <p>Retrieves verified historical couplets and verses from Sangam literature (Tirukkural, Purananuru, Manimekalai, Silappatikaram) without hallucination.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Limitations & Fair Use -->
+  <div class="section">
+    <div class="section-title">3. System Limitations & Usage Policy</div>
+    <div class="policy-box">
+      <h4>⚠️ 20 Requests Per Day Usage Policy</h4>
+      <ul>
+        <li><strong>Daily Rate Limit:</strong> To ensure equitable access and protect shared cloud infrastructure, each user is allotted a policy limit of <strong>20 requests per day</strong>.</li>
+        <li><strong>AWS & Free-Tier AI APIs:</strong> The backend is deployed on an AWS EC2 instance connected to free-tier LLM endpoints (Google Gemini & Groq).</li>
+        <li><strong>Responsible Use:</strong> Please use lookups thoughtfully, allow 2–3 seconds between queries, and avoid automated scripts or rapid clicking.</li>
+        <li><strong>Deterministic Safe Fallback:</strong> If third-party AI rate limits are exceeded, SOL AI automatically falls back to our offline dictionary & Sangam database engine.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 4: Future Roadmap -->
+  <div class="section">
+    <div class="section-title">4. Future Roadmap & Improvements</div>
+    <div class="roadmap-list">
+      <div class="roadmap-item">
+        <strong>🌐 Chrome Web Store Release</strong>
+        Official store publication for one-click installation and automatic background updates.
+      </div>
+      <div class="roadmap-item">
+        <strong>📚 Corpus & Resource Expansion</strong>
+        Integration of further Sangam, Pathinenkilkanakku, and contemporary Tamil lexicons.
+      </div>
+      <div class="roadmap-item">
+        <strong>⚡ Client-Side WebAssembly (WASM)</strong>
+        Compiling ThamizhiMorph FSTs to WASM for 100% offline, zero-latency in-browser parsing.
+      </div>
+      <div class="roadmap-item">
+        <strong>🗣️ Dialectal & Idiom Intelligence</strong>
+        Advanced disambiguation for regional, Sri Lankan, and diaspora Tamil idioms.
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div>SOL AI (சொல் AI) • Tamil Lexical Intelligence Platform</div>
+    <div>Repository: <a href="https://github.com/vishwavel05/Sol-AI">github.com/vishwavel05/Sol-AI</a></div>
+  </div>
+
+</body>
+</html>
