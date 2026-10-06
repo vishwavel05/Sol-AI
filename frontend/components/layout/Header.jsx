@@ -31,15 +31,8 @@ export default function Header({ isTransparent = false, showExtensionButton }) {
     zipLink.click();
     document.body.removeChild(zipLink);
 
-    // 2. Download Instructions PDF
-    setTimeout(() => {
-      const pdfLink = document.createElement("a");
-      pdfLink.href = "/SOL_AI_Extension_Guide.pdf";
-      pdfLink.download = "SOL_AI_Extension_Guide.pdf";
-      document.body.appendChild(pdfLink);
-      pdfLink.click();
-      document.body.removeChild(pdfLink);
-    }, 300);
+    // 2. Open the PDF Guide in a new tab (bypasses browser multi-download security blocks)
+    window.open("/SOL_AI_Extension_Guide.pdf", "_blank");
   };
 
   const headerBg = isTransparent
