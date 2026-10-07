@@ -223,9 +223,14 @@ If you use or reference **SOL AI** or its underlying Tamil lexical retrieval arc
 
 ## 👥 Contributors
 
-* **Vishwavel Sivakumar** - [@vishwavel05](https://github.com/vishwavel05)
-* **Suresh Thevar** - [@sureshthevar05](https://github.com/sureshthevar05)
-* **Bharath Raj T** - [@tbharathraj205](https://github.com/tbharathraj205)
+- **Vishwavel Sivakumar** — Core platform, AI/linguistic engineering, frontend, and system integration  
+  [@vishwavel05](https://github.com/vishwavel05)
+
+- **Suresh Thevar** — Backend engineering and Chrome extension development  
+  [@sureshthevar05](https://github.com/sureshthevar05)
+
+- **Bharath Raj T** — AWS deployment and cloud infrastructure  
+  [@tbharathraj205](https://github.com/tbharathraj205)
 
 ---
 
